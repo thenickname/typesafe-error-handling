@@ -1,4 +1,4 @@
-import { OperationalError, Errors } from "./error";
+import { OperationalError, Errors } from "./result-error-match";
 
 export class OutOfBoundsError extends OperationalError {
 
