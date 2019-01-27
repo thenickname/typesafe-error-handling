@@ -1,6 +1,6 @@
-import { OperationalError, Errors } from "./result-error-match";
+import { Errors, BaseError } from "./UserLandErrors";
 
-export class OutOfBoundsError extends OperationalError {
+export class OutOfBoundsError extends BaseError {
 
     protected type: Errors.OutOfBoundsError = Errors.OutOfBoundsError;
 

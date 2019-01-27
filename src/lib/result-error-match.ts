@@ -1,16 +1,12 @@
 
-export enum Errors {
-    OutOfBoundsError = 'OutOfBoundsError',
-}
-
 export abstract class OperationalError {
 
     public readonly message: string;
     public readonly stack?: string;
 
-    protected abstract readonly type: Errors;
+    protected abstract readonly type: string;
 
-    public abstract get name(): Errors;
+    public abstract get name(): string;
 
     constructor( message: string = '', stack: boolean | string = false ) {
         this.message = message;
@@ -34,11 +30,11 @@ export abstract class OperationalError {
 
 export type Result<Ok, Err extends OperationalError> = Ok | Err;
 
-export function match<Ok = never, Err extends OperationalError = never, OkRet = void, ErrRet = void>(
+export function match<Ok = never, Err extends OperationalError = never, OkResult = void, ErrResult = void>(
     result: Result<Ok, Err>,
-    okCallback: ( ok: Ok ) => OkRet,
-    errorCallback: ( error: Err ) => ErrRet,
-): OkRet | ErrRet {
+    okCallback: ( ok: Ok ) => OkResult,
+    errorCallback: ( error: Err ) => ErrResult,
+): OkResult | ErrResult {
     if ( result instanceof OperationalError ) {
         return errorCallback( result );
     }
